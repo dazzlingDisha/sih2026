@@ -1,0 +1,18 @@
+"""Simulation request and response schemas."""
+
+from pydantic import BaseModel, Field
+
+from .telemetry import TelemetryPayload
+
+
+class SimulationRequest(BaseModel):
+	intensity: str = Field(default="high", description="Demo surge intensity")
+	target_basin: str = Field(default="MANDakINI", description="Target river basin")
+	region_id: str = Field(default="mandakini", description="Regional deployment bundle")
+
+
+class SimulationResponse(BaseModel):
+	message: str
+	telemetry: TelemetryPayload
+	incident: dict | None = None
+
